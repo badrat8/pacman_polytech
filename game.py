@@ -45,7 +45,7 @@ def start_game():
 
     beggining = True
 
-    while not pyray.window_should_close():
+    while True:
         pyray.begin_drawing()
         pyray.clear_background(colors.BLACK)
         f.show()
@@ -72,8 +72,6 @@ def start_game():
         else:
             pacman.Goback()
 
-
-
         for _ghost in a: #GHOSTS
             _ghost.move()
             _ghost.show()
@@ -81,7 +79,6 @@ def start_game():
                 _ghost.x = _ghost.old_x
                 _ghost.y = _ghost.old_y
                 _ghost.way = _ghost.ways[random.randint(0, len(_ghost.ways)-1)]
-
 
             if field.check_collision(pacman.x, pacman.y, pacman.radius * 2, pacman.radius * 2, _ghost.x, _ghost.y, _ghost.radius * 2, _ghost.radius * 2):
                 if settings.ULTA_TIME > 0:
@@ -98,7 +95,6 @@ def start_game():
                         pyray.play_sound(death)
                     else:
                         return [coins + ghosts_coins, -1]
-
 
         new_coins = f.count_coins()
         if new_coins - coins > 0:
