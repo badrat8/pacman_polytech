@@ -44,11 +44,9 @@ class Pacman:
         return self.x - self.radius <= 0 or self.x + self.radius >= settings.WIDTH
 
     def collides_with(self, other_ball):
-        return pyray.check_collision_circles(pyray.Vector2(self.rect.x + self.radius, self.rect.y + self.radius),
-                                             self.radius,
+        return pyray.check_collision(pyray.Vector2(self.rect.x + self.radius, self.rect.y + self.radius),
                                              pyray.Vector2(other_ball.rect.x + other_ball.x,
-                                                           other_ball.rect.y + other_ball.radius),
-                                             other_ball.radius
+                                                           other_ball.rect.y + other_ball.radius)
                                              )
 
     def reset(self):
@@ -60,12 +58,12 @@ class Pacman:
         self.shift = [0, 0]
 
     def UP(self):
-            self.set_newangle_rot(135)
+            self.set_newangle_rot(135 + 180)
             self.newshift[1] = -self.speed
             self.newshift[0] = 0
 
     def DOWN(self):
-            self.set_newangle_rot(135 + 180)
+            self.set_newangle_rot(135)
             self.newshift[1] = self.speed
             self.newshift[0] = 0
 
@@ -121,7 +119,7 @@ class Pacman:
     def draw(self):
         pyray.draw_circle(self.old_x, self.old_y, self.radius, self.color)
         if self.tick >= 0:
-            pyray.draw_circle_sector(pyray.Vector2(self.old_x, self.old_y), self.radius+1, self.angle_rot, self.angle_rot + 90, 0, colors.BLACK)
+            pyray.draw_circle_sector(pyray.Vector2(self.old_x, self.old_y), self.radius+1, self.angle_rot, self.angle_rot - 90, 0, colors.BLACK)
             self.tick -= 1
         elif self.tick >= -10:
             self.tick -= 1

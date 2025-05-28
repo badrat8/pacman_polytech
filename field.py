@@ -70,10 +70,10 @@ class Field():
         for x in range(len(self.arr)):
             for y in range(len(self.arr[x])):
                 if self.arr[x][y] == 4 and obj_type == "pacman":
-                    if check_collision(px - obj.radius, py - obj.radius, obj.radius*2, obj.radius*2, y * self.size, (x-1) * self.size, self.size, self.size*3):
+                    if check_collision(px - obj.radius, py - obj.radius, obj.radius*2, obj.radius*2, y * self.size, x * self.size, self.size, self.size):
                         settings.TELEPORT_0 = True
                 if self.arr[x][y] == 5 and obj_type == "pacman":
-                    if check_collision(px - obj.radius, py - obj.radius, obj.radius*2, obj.radius*2, y * self.size, (x-1) * self.size, self.size, self.size*3):
+                    if check_collision(px - obj.radius, py - obj.radius, obj.radius*2, obj.radius*2, y * self.size, x * self.size, self.size, self.size):
                         settings.TELEPORT_1 = True
                 if self.arr[x][y] == 1 or (obj_type == "ghost" and (self.arr[x][y] == 4 or self.arr[x][y] == 5)):
                     if check_collision(px - obj.radius, py - obj.radius, obj.radius*2, obj.radius*2, y * self.size, x * self.size, self.size, self.size):
