@@ -33,7 +33,7 @@ def start_game():
     start_ghost_cords = {"x1": 13.5, "x2": 14.5, "x3": 15.5, "x4": 16.5, "y1": 15.5, "y2": 15.5, "y3": 15.5, "y4": 15.5,}
     start_pacman_cords = {"x": 15, "y": 18.5}
 
-    pacman = pc.Pacman(int(start_pacman_cords["x"]*f.size), int(start_pacman_cords["y"]*f.size), 9.5)
+    pacman = pc.Pacman(int(start_pacman_cords["x"]*f.size), int(start_pacman_cords["y"]*f.size), f.size//2-1.5)
     a = [ghost.Ghost(int(start_ghost_cords["x1"]*f.size), int(start_ghost_cords["y1"]*f.size), colors.RED),
          ghost.Ghost(int(start_ghost_cords["x2"]*f.size), int(start_ghost_cords["y2"]*f.size), colors.SKYBLUE),
          ghost.Ghost(int(start_ghost_cords["x3"]*f.size), int(start_ghost_cords["y3"]*f.size), colors.MAGENTA),
