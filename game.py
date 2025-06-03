@@ -8,7 +8,7 @@ import field
 import ghost
 import settings
 import settings as set
-import game_data
+#import game_data
 
 def start_game():
     f = field.Field()
@@ -21,11 +21,11 @@ def start_game():
     pyray.init_audio_device()
     death = pyray.load_sound("pacman_death.wav")
     inter = pyray.load_sound("pacman_intermission.wav")
-    beggin = pyray.load_sound("pacman_beginning.wav")
+    begin = pyray.load_sound("pacman_beginning.wav")
     eat = pyray.load_sound("pacman_chomp.wav")
 
     pyray.set_sound_volume(death, 1)
-    pyray.play_sound(beggin)
+    pyray.play_sound(begin)
 
 
     pyray.set_target_fps(60)# FPS
@@ -43,7 +43,7 @@ def start_game():
     ghosts_coins = 0
     coins = 0
 
-    beggining = True
+    beginning = True
 
     while True:
         pyray.begin_drawing()
@@ -65,12 +65,12 @@ def start_game():
             pacman.kesh_y = int(15.5*f.size)
             settings.TELEPORT_1 = False
         if f.check_coll(pacman.kesh_x, pacman.kesh_y, "pacman",pacman) == False:
-            pacman.Gokesh()
-            pacman.Go()
+            pacman.gokesh()
+            pacman.go()
         elif f.check_coll(pacman.x, pacman.y, "pacman",pacman) == False:
-            pacman.Go()
+            pacman.go()
         else:
-            pacman.Goback()
+            pacman.goback()
 
         for _ghost in a: #GHOSTS
             _ghost.move()
@@ -82,13 +82,13 @@ def start_game():
 
             if field.check_collision(pacman.x, pacman.y, pacman.radius * 2, pacman.radius * 2, _ghost.x, _ghost.y, _ghost.radius * 2, _ghost.radius * 2):
                 if settings.ULTA_TIME > 0:
-                    if _ghost.lifes > 1:
+                    if _ghost.lives > 1:
                         _ghost.reset()
                     else:
                         a.remove(_ghost)
                         ghosts_coins += 100
                 else:
-                    if pacman.lifes > 1:
+                    if pacman.lives > 1:
                         pacman.reset()
                         for i in a:
                             i.reset()
@@ -102,7 +102,7 @@ def start_game():
         coins = new_coins
 
         c = f.count_seed()
-        pyray.draw_text("Your score = " + str(coins + ghosts_coins) + "\nLifes = " + str(pacman.lifes), 740, 60, 60, colors.YELLOW)
+        pyray.draw_text("Your score = " + str(coins + ghosts_coins) + "\nLives = " + str(pacman.lives), 740, 60, 60, colors.YELLOW)
 
         if c == 0:
             return [coins + ghosts_coins, 1]
@@ -113,7 +113,7 @@ def start_game():
         if settings.ULTA_TIME > 0:
             settings.ULTA_TIME -= 1
         pyray.end_drawing()
-        if beggining:
+        if beginning:
             time.sleep(4)
-            beggining = False
+            beginning = False
     pyray.close_window()

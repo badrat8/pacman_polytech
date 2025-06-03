@@ -17,7 +17,7 @@ def check_collision(x1, y1, width1, height1, x2, y2, width2, height2):
     return False
 
 
-class Field():
+class Field:
     def __init__(self):
         self.size = 24
         self.arr = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],

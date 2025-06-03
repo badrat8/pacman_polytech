@@ -1,8 +1,3 @@
-import pyray
-from raylib import colors
-import pacman as pc
-import settings as set
-import game
 import menus
 
 def main():

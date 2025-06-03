@@ -1,4 +1,3 @@
-import datetime
 import random
 import pyray
 from raylib import colors
@@ -6,7 +5,7 @@ from raylib import colors
 import settings
 
 
-class Ghost():
+class Ghost:
     def __init__(self, x, y, color):
         self.x = x
         self.y = y
@@ -17,12 +16,12 @@ class Ghost():
         self.color = color
         self.radius = 9
         self.speed = 6
-        self.lifes = 3
+        self.lives = 3
         self.ways = [[1, 0], [0, 1], [-1, 0], [0, -1]]
         self.way = self.ways[random.randint(0, len(self.ways)-1)]
 
     def reset(self):
-        self.lifes -= 1
+        self.lives -= 1
         self.x = self.reset_x
         self.y = self.reset_y
 

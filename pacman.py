@@ -18,7 +18,7 @@ class Pacman:
         self.color = color
         self.outline = outline
         self.speed = speed
-        self.lifes = 3
+        self.lives = 3
         self.tick = 10
         self.angle_rot = 45
         self.newangle_rot = 45
@@ -50,46 +50,47 @@ class Pacman:
                                              )
 
     def reset(self):
-        self.lifes -= 1
+        self.lives -= 1
         self.x = self.reset_x
         self.y = self.reset_y
         self.kesh_x = self.reset_x
         self.kesh_y = self.reset_y
         self.shift = [0, 0]
 
-    def UP(self):
+    def up(self):
             self.set_newangle_rot(135 + 180)
             self.newshift[1] = -self.speed
             self.newshift[0] = 0
 
-    def DOWN(self):
+    def down(self):
             self.set_newangle_rot(135)
             self.newshift[1] = self.speed
             self.newshift[0] = 0
 
-    def LEFT(self):
+    def left(self):
             self.set_newangle_rot(225)
             self.newshift[0] = -self.speed
             self.newshift[1] = 0
 
-    def RIGHT(self):
+    def right(self):
             self.set_newangle_rot(225 + 180)
             self.newshift[0] = self.speed
             self.newshift[1] = 0
 
-    def Go(self):
+    def go(self):
         self.old_x = self.x
         self.old_y = self.y
         self.kesh_x = self.old_x
         self.kesh_y = self.old_y
-    def Gokesh(self):
+        
+    def gokesh(self):
         self.x = self.kesh_x
         self.y = self.kesh_y
         self.shift[0]=self.newshift[0]
         self.shift[1]=self.newshift[1]
         self.set_angle_rot(self.newangle_rot)
 
-    def Goback(self):
+    def goback(self):
         self.x = self.old_x
         self.y = self.old_y
         self.kesh_x = self.old_x
@@ -102,13 +103,13 @@ class Pacman:
             self.shift[0] = 0
 
         if pyray.is_key_down(pyray.KeyboardKey.KEY_W): #UP
-            self.UP()
+            self.up()
         if pyray.is_key_down(pyray.KeyboardKey.KEY_S): #DOWN
-            self.DOWN()
+            self.down()
         if pyray.is_key_down(pyray.KeyboardKey.KEY_A): #LEFT
-            self.LEFT()
+            self.left()
         if pyray.is_key_down(pyray.KeyboardKey.KEY_D): #RIGHT
-            self.RIGHT()
+            self.right()
 
         self.x += self.shift[0]
         self.y += self.shift[1]
